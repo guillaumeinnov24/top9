@@ -14,3 +14,5 @@ You can modify it, destroy it, print it and use it as a kleenex.. I don't care.
 You can also read it. Keep in mind this is not an evolved code (ie, there is NO object oriented programation).
 It's just basic html and jquery functions.
 Enjoy!
+
+Stupid example : http://plop.scienceontheweb.net
