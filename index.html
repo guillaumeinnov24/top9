@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--
+
+README : 
+1) Select everyting
+2) Copy in a new file
+3) Name the file whatever_you_want.html
+4) Connect to the internet
+5) Open the previous whatever_you_want.html with your browser
+6) it should work lol ;)
+
+LICENSE
+This document has NO license. Main reason : it's totally useless.
+You can modify it, destroy it, print it and use it as a kleenex.. I don't care.
+You can also read it. Keep in mind this is not an evolved code (ie, there is NO object oriented programation). 
+It's just basic html and jquery functions.
+Enjoy!
+-->
+<html>
+    <head>
+        <title>My Top 9</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+        <!-- internal CSS attributes-->
+        <style type="text/css">
+            
+            .square{
+/*                size*/
+                width: 150px;
+                height: 150px;
+                
+/*                position*/
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 20%;
+                padding: 5px;
+                text-align: center;
+                
+/*                decoration*/ 
+                border-radius: 5px;
+                background-color: transparent;
+                cursor:pointer;
+                
+            }
+            
+            .main_txt{
+
+/*                position*/
+                margin-top: 33%;
+                
+/*                text-decoration*/ 
+                font-size: 26px;
+                font-family: impact;
+                font-weight: bold;
+                line-height: 32px;
+                
+            }
+
+            .messages{
+                
+/*                size*/
+                width: 400px;
+                height: auto;
+
+/*                position*/
+                position: absolute;
+                padding: 5px;
+                text-align: center;
+                
+/*                decoration*/ 
+                background-color: transparent;
+                cursor: move;
+                padding-top: 25px;
+            }
+            
+            .m_images{
+/*                size*/
+                width: 50px;
+                height: 50px;
+                
+/*                decoration*/ 
+                cursor:pointer;
+            }
+            .m_num{
+/*                size*/
+                width: 30px;
+                height: 20px;
+                
+/*                position*/
+                float: right;
+                padding-top: 3px;
+                margin-top: 5%;
+                margin-right: 10%;
+                
+/*                decoration*/ 
+                border: 1px solid #333;
+                border-radius: 40%;
+                background-color: #333;
+                color: white;
+            }
+            
+            .table{
+/*                size*/
+                width: 100%;
+                height: 100%;
+            }
+            
+            td{
+                
+/*                decoration*/ 
+                border-radius: 5px; 
+                background-color: #E5E5FF;
+                cursor:pointer;
+                background-image: none;
+                color: grey;
+                font-family: arial;
+            }
+            
+            .tips{
+                
+/*                other attributes*/
+                display: none;
+                
+/*                size*/
+                width: 100%;
+                height: 40px;
+
+/*                position*/
+                position: absolute;
+                bottom: 25px;
+                left: 25px;
+                padding: 5px;
+                text-align: left;
+                
+/*                decoration*/ 
+                background-color: tranparent;
+                color: #333;
+                opacity: 0.85;
+                
+            }
+        </style>
+
+    </head>
+    <body>
+
+    
+        
+<!-- Javascript code -->
+
+<script>
+//    Variables
+mainTitle = "Stuffs";
+state = "";
+name = "tigxxx";
+c_message = "Click please!";
+welcome_msg = "<div class='main_txt'>Discover my<br />Top 9!</div>";
+tipsMessages = "You can move the item by clicking and holding it (Double Click the First Time).";
+
+//content
+youtube = [];
+youtube[1] = "nFGXU4DFniI";
+youtube[2] = "PSKQ3ZNQ_O8";
+youtube[3] = "NDKpAPJfns4";
+youtube[4] = "bnC7TdkRnP4";
+youtube[5] = "aXOQ9LMn3mo";
+youtube[6] = "2rjbtsX7twc";
+youtube[7] = "uaWA2GbcnJU";
+youtube[8] = "eF7w9RHW6E4";
+youtube[9] = "vQTrdYEaoIU";
+
+//description
+datamessages = [];
+datamessages[1] = "Piano, electronic music, everything that makes Ez3kiel so good";
+datamessages[2] = "This..is... just.... awesome!! OO";
+datamessages[3] = "My best-friend favorite";
+datamessages[4] = "No more lsd :)";
+datamessages[5] = "HA HA HA!";
+datamessages[6] = "Very inspiring";
+datamessages[7] = "It is a commercial. I usually dont like commercials. But I'm ok with this one/";
+datamessages[8] = "Love that!";
+datamessages[9] = "Speak into the mic bitch :p";
+
+//    Functions
+    
+function clickOnWelcome(object){
+    
+    state = "clicked";
+    
+    $('.square').css('cursor','auto');
+    
+    object.css('background-color','transparent');
+    object.html('\
+        <h2>'+mainTitle+'</h2>\n\
+        <table id="mainmenu" class="table">\n\
+            <tr>\n\
+                <td><div id="0"></div>1</td>\n\
+                <td><div id="1"></div>2</td>\n\
+                <td><div id="2"></div>3</td>\n\
+            </tr>\n\
+            <tr>\n\
+                <td><div id="3"></div>4</td>\n\
+                <td><div id="4"></div>5</td>\n\
+                <td><div id="5"></div>6</td>\n\
+            </tr>\n\
+            <tr>\n\
+                <td><div id="6"></div>7</td>\n\
+                <td><div id="7"></div>8</td>\n\
+                <td><div id="8"></div>9</td>\n\
+            </tr>\n\
+        </table>');
+
+}
+
+function clickOnTd(object){
+    
+    tdindex  = object.index();
+    trindex  = object.parent().index();
+    index = tdindex + '' + trindex;
+    
+    switch (index){
+        case '00':
+            var videonum = 1;
+        break;
+        case '10':
+            var videonum = 2;
+        break;
+        case '20':
+            var videonum = 3;
+        break;
+         case '01':
+            var videonum = 4;
+        break;
+        case '11':
+            var videonum = 5;
+        break;
+        case '21':
+            var videonum = 6;
+        break;
+        case '02':
+            var videonum = 7;
+        break;
+        case '12':
+            var videonum = 8;
+        break;
+        case '22':
+            var videonum = 9;
+        break;
+        default:
+        break;
+        
+    }
+
+    var rightORleft = Math.floor((Math.random() * 2) + 1);
+    (rightORleft == 2) ? rightORleft = 'right' : rightORleft = 'left';
+    
+    var topORbot = Math.floor((Math.random() * 2) + 1);
+    (topORbot == 2) ? topORbot = 'top' : topORbot = 'bottom';
+    
+    var rightORleftVAL = Math.floor((Math.random() * 160) + 1);
+    var topORbotVAL = Math.floor((Math.random() * 120) + 1);
+   
+    ($('#message'+index).length) ? $('#message'+index).remove() : $('body').append('\
+                                                                            <div id="message'+index+'" class="messages" data-tips="'+datamessages[videonum]+'">\n\
+                                                                                <img class="m_images close" src="http://cdn.flaticon.com/png/256/37842.png"/>\n\
+                                                                                <img class="m_images question" src="http://salon-ctco.com/wp-content/uploads/2011/07/point-interrogation-ctco.png"/>\n\
+                                                                                <div class="m_num">'+videonum+'</div>\n\
+                                                                                <iframe width="320" height="240" src="//www.youtube.com/embed/'+youtube[videonum]+'" frameborder="0" allowfullscreen></iframe>\
+                                                                            </div>');
+    $('#message'+index).css(rightORleft,rightORleftVAL);
+    $('#message'+index).css(topORbot,topORbotVAL);
+ 
+
+}
+
+function clickOnMessage(object){
+
+   object.addClass('ui-widget-content');
+   object.draggable();
+
+}
+
+function hooverIn(msg){
+    
+    $('#tips').remove();
+    $('body').append("<div id='tips' class='tips'></div>");
+    $('#tips').slideToggle();
+    $('#tips').html(msg);
+    $('#tips').show();
+}
+
+function hooverOut(){
+    
+    $('#tips').slideToggle();
+    $('#tips').remove();
+
+}
+
+function close_message(object){
+    
+    object.parent().remove();
+    
+}
+
+</script>
+
+<script>
+//    Main code
+
+$( document ).ready(function(){
+    
+    state = "not_clicked";
+    
+    $('body').html("<div id='welcome' class='square'>"+welcome_msg+"<div>by <b>"+name+"</b></div></div>");
+    
+    $('body').on('click','#welcome',function(){
+        
+        var that=$(this);
+        clickOnWelcome(that);
+        
+    });
+    
+    $('body').one('mouseenter','#welcome',function(){
+
+        hooverIn(c_message);
+
+    });
+    
+    $('body').one('mouseleave','#welcome',function(){
+
+        var that = $(this);
+        hooverOut();
+
+    });
+
+    $('body').on('click','td',function(){
+
+        var that = $(this);
+        clickOnTd(that);
+
+    });
+    
+    $('body').on('click','.messages',function(){
+
+        var that = $(this);
+        clickOnMessage(that);
+
+    });
+    
+    $('body').on('mouseenter','.messages',function(){
+
+        var that = $(this);
+        var ttips = that.attr('data-tips');
+        hooverIn(ttips);
+
+    });
+    
+    $('body').on('mouseleave','.messages',function(){
+
+        var that = $(this);
+        hooverOut();
+
+    });
+    
+    $('body').on('click','.close',function(){
+
+        var that = $(this);
+        close_message(that);
+
+    });
+    
+    $('body').on('mouseenter','.question',function(){
+
+        var ttips = tipsMessages;
+        hooverIn(ttips);
+
+    });
+    
+    $('body').on('mouseleave','.question',function(){
+
+        var that = $(this);
+        hooverOut();
+
+    });
+
+
+});
+
+</script>
+
+    </body>
+</html>
